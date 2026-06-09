@@ -9,13 +9,9 @@ import {
   User,
   ChevronRight,
   Bell,
-  Sparkles,
   BookOpen,
-  Target,
   TrendingUp,
-  ArrowRight,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Avatar } from "@/components/ui/avatar";
 import { BottomNavigation } from "@/components/ui/bottom-nav";
 
@@ -28,82 +24,64 @@ const navItems = [
 ];
 
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState("home");
+  const [activeTab] = useState("home");
 
   return (
-    <div className="min-h-screen bg-bg">
-      <div className="max-w-[420px] mx-auto">
+    <div className="min-h-screen bg-surface pb-24">
+      <div className="max-w-[430px] mx-auto">
 
         {/* ─── Header ─────────────────────── */}
-        <header className="flex items-center justify-between px-6 pt-8 pb-2">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-secondary to-primary flex items-center justify-center text-white text-base font-bold shadow-lg shadow-primary/20">
-              T
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-text-primary">Selamat pagi</h1>
-              <p className="text-sm text-text-secondary/60">Tara, semangat terus ya ✨</p>
-            </div>
+        <header className="flex items-center justify-between px-6 pt-7 pb-3">
+          <div>
+            <p className="text-sm text-text-secondary/50 font-medium">Selamat pagi</p>
+            <h1 className="text-2xl font-bold text-text-primary -mt-0.5">Tara</h1>
           </div>
-          <button className="w-11 h-11 rounded-full bg-surface flex items-center justify-center cursor-pointer shadow-lg shadow-black/5 hover:shadow-xl transition-shadow">
-            <Bell size={19} className="text-text-secondary" />
+          <button className="w-11 h-11 rounded-full bg-bg flex items-center justify-center cursor-pointer hover:bg-muted transition-colors">
+            <Bell size={19} className="text-text-secondary/60" />
           </button>
         </header>
 
-        {/* ─── Hero Goal Card ──────────────── */}
-        <section className="px-6 mt-6 mb-20">
-          <div className="rounded-3xl bg-gradient-to-br from-primary via-[#0a5a7e] to-[#0d6b94] p-8 text-white shadow-[0_20px_60px_rgba(8,68,99,0.35)] min-h-[360px] flex flex-col relative overflow-hidden">
-            <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-white/5" />
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-secondary/10" />
+        {/* ─── Hero Card ──────────────────── */}
+        <section className="px-6 mt-6 mb-24">
+          <div className="rounded-3xl bg-gradient-to-br from-primary via-primary to-[#0d6b94] text-white overflow-hidden relative"
+            style={{ height: "320px" }}
+          >
+            <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-white/[0.04] -mr-16 -mt-16" />
+            <div className="absolute bottom-0 left-0 w-36 h-36 rounded-full bg-secondary/[0.06] -ml-12 -mb-12" />
 
-            <div className="relative z-10 flex flex-col h-full min-h-[360px]">
-              <div className="flex items-center justify-between">
-                <div className="flex gap-2">
-                  <span className="text-2xl">🌟</span>
-                  <span className="text-2xl">🚀</span>
-                </div>
-                <Badge className="bg-white/15 text-white text-[11px] px-3 py-1 font-medium">
-                  ✨ Goal Aktif
-                </Badge>
-              </div>
-
-              <div className="mt-10 space-y-2">
-                <p className="text-sm font-medium text-white/50 uppercase tracking-[0.08em]">
-                  Goal Utama
+            <div className="relative z-10 flex flex-col justify-between h-full p-7">
+              <div>
+                <span className="text-[28px]">🌟</span>
+                <p className="text-xs text-white/40 font-medium uppercase tracking-[0.1em] mt-5">
+                  Goal utama
                 </p>
-                <h2 className="text-[26px] font-bold leading-tight">
+                <h2 className="text-[24px] font-bold leading-tight mt-1.5">
                   Menjadi Digital<br />Marketing Director
                 </h2>
-                <p className="text-sm text-white/60 mt-3 leading-relaxed">
-                  Kamu sudah 65% lebih dekat dengan mimpimu. Tetap lanjutkan!
-                </p>
               </div>
 
-              <div className="mt-8">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm text-white/60">Progress</span>
-                  <span className="text-lg font-bold text-accent">65%</span>
-                </div>
-                <div className="h-3 rounded-full bg-white/15 overflow-hidden">
-                  <div
-                    className="h-full rounded-full bg-gradient-to-r from-accent via-[#ffd86b] to-secondary transition-all duration-700 ease-out relative"
-                    style={{ width: "65%" }}
-                  >
-                    <div className="absolute right-0 top-0 bottom-0 w-4 rounded-full bg-white/40 blur-sm" />
+              <div className="space-y-5">
+                <div>
+                  <div className="flex items-center justify-between mb-2.5">
+                    <span className="text-xs text-white/50">Progress minggu ini</span>
+                    <span className="text-base font-bold text-accent">65%</span>
+                  </div>
+                  <div className="h-2.5 rounded-full bg-white/10 overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-accent to-secondary transition-all duration-700 ease-out"
+                      style={{ width: "65%" }}
+                    />
                   </div>
                 </div>
-              </div>
 
-              <div className="mt-auto pt-8">
-                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/5">
-                  <div className="w-10 h-10 rounded-xl bg-accent/25 flex items-center justify-center flex-shrink-0">
-                    <Target size={18} className="text-accent" />
+                <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/10 backdrop-blur-sm">
+                  <div className="w-9 h-9 rounded-xl bg-accent/25 flex items-center justify-center flex-shrink-0">
+                    <span className="text-base">🎯</span>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-white">Langkah selanjutnya</p>
-                    <p className="text-[13px] text-white/60 mt-0.5">Hubungi 1 mentor minggu ini</p>
+                  <div>
+                    <p className="text-sm font-semibold text-white/90">Hubungi 1 mentor minggu ini</p>
+                    <p className="text-xs text-white/50 mt-0.5">Kamu sudah dekat dengan targetmu</p>
                   </div>
-                  <ArrowRight size={18} className="text-white/40 flex-shrink-0" />
                 </div>
               </div>
             </div>
@@ -111,119 +89,95 @@ export default function HomePage() {
         </section>
 
         {/* ─── Priority Task ──────────────── */}
-        <section className="px-6 mb-20">
-          <div className="flex items-center justify-between mb-5">
-            <h2 className="text-xs font-semibold text-text-secondary/50 uppercase tracking-[0.1em]">
-              Prioritas Hari Ini
-            </h2>
-            <span className="text-xs text-text-secondary/40">1 tugas</span>
-          </div>
-          <div className="rounded-2xl bg-surface p-6 shadow-lg shadow-black/5 hover:shadow-xl transition-shadow">
+        <section className="px-6 mb-24">
+          <div className="rounded-2xl bg-bg p-6">
             <div className="flex items-start gap-4">
-              <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center flex-shrink-0 mt-0.5 shadow-lg shadow-accent/25">
+              <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center flex-shrink-0 mt-0.5">
                 <span className="text-sm font-bold text-accent-foreground">!</span>
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2.5">
-                  <h3 className="text-[15px] font-bold text-text-primary">
-                    Follow up networking event
-                  </h3>
-                  <Badge variant="accent" className="text-[9px] px-2 py-0.5 leading-none">
-                    🔥 Prioritas
-                  </Badge>
-                </div>
-                <p className="text-sm text-text-secondary/60 mt-2 leading-relaxed">
-                  Kirim pesan ke 3 orang yang kamu temui kemarin. Bangun koneksi sebelum mereka lupa denganmu.
+                <p className="text-xs text-text-secondary/40 font-medium uppercase tracking-[0.08em] mb-2">
+                  Ada yang perlu kamu selesaikan
                 </p>
-                <div className="flex items-center gap-4 mt-4 text-xs text-text-secondary/40">
-                  <span>📅 Deadline hari ini</span>
+                <h3 className="text-[17px] font-bold text-text-primary leading-snug">
+                  Follow up networking event
+                </h3>
+                <p className="text-sm text-text-secondary/50 mt-2 leading-relaxed">
+                  Kirim pesan ke 3 orang yang kamu temui kemarin. Bangun koneksi sebelum mereka lupa.
+                </p>
+                <div className="flex items-center gap-4 mt-4">
+                  <span className="text-xs text-text-secondary/30">📅 Hari ini</span>
                 </div>
               </div>
-              <ChevronRight size={18} className="text-text-secondary/20 flex-shrink-0 mt-2" />
             </div>
           </div>
         </section>
 
         {/* ─── Circle ─────────────────────── */}
-        <section className="px-6 mb-20">
-          <div className="flex items-center justify-between mb-5">
-            <h2 className="text-xs font-semibold text-text-secondary/50 uppercase tracking-[0.1em]">
-              Circle Aktif
-            </h2>
-            <button className="text-xs font-medium text-primary/50 cursor-pointer hover:text-primary transition-colors">
-              Lihat Semua →
-            </button>
-          </div>
-          <div className="rounded-2xl bg-surface p-6 shadow-lg shadow-black/5 hover:shadow-xl transition-shadow">
+        <section className="px-6 mb-24">
+          <div className="rounded-2xl bg-bg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-xs text-text-secondary/40 font-medium uppercase tracking-[0.08em]">
+                Circle aktifmu
+              </p>
+              <ChevronRight size={16} className="text-text-secondary/20" />
+            </div>
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary to-primary flex items-center justify-center text-white text-lg font-bold flex-shrink-0 shadow-lg shadow-primary/20">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary to-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
                 DM
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="text-[17px] font-bold text-text-primary">Digital Marketing Career</h3>
-                <div className="flex items-center gap-3 mt-2">
-                  <span className="text-sm text-text-secondary/50 flex items-center gap-1.5">
-                    <Users size={14} />
-                    8 anggota
-                  </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-success" />
-                  <span className="text-sm text-success/60">2 online</span>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-sm text-text-secondary/50">8 anggota</span>
+                  <span className="w-1 h-1 rounded-full bg-text-secondary/20" />
+                  <span className="text-sm text-text-secondary/50">2 online</span>
                 </div>
-                <div className="flex items-center mt-4 -space-x-2">
+                <div className="flex items-center mt-3.5 -space-x-2">
                   <Avatar initials="AP" size="sm" />
                   <Avatar initials="BS" size="sm" />
                   <Avatar initials="CD" size="sm" />
-                  <div className="w-8 h-8 rounded-full bg-muted border-2 border-surface flex items-center justify-center text-[10px] font-medium text-text-secondary shadow-sm">
+                  <div className="w-8 h-8 rounded-full bg-muted border-2 border-bg flex items-center justify-center text-[10px] font-medium text-text-secondary/50">
                     +5
                   </div>
                 </div>
               </div>
-              <ChevronRight size={20} className="text-text-secondary/20 flex-shrink-0" />
             </div>
           </div>
         </section>
 
         {/* ─── Opportunities ──────────────── */}
-        <section className="px-6 mb-24">
-          <div className="flex items-center justify-between mb-5">
-            <h2 className="text-xs font-semibold text-text-secondary/50 uppercase tracking-[0.1em]">
-              Rekomendasi untukmu
-            </h2>
-            <button className="text-xs font-medium text-primary/50 cursor-pointer hover:text-primary transition-colors">
-              Lihat Semua →
-            </button>
-          </div>
-          <div className="space-y-4">
-            <div className="rounded-2xl bg-surface p-6 shadow-lg shadow-black/5 hover:shadow-xl transition-shadow">
+        <section className="px-6 mb-28">
+          <p className="text-xs text-text-secondary/40 font-medium uppercase tracking-[0.08em] mb-4">
+            Rekomendasi untukmu
+          </p>
+          <div className="space-y-3">
+            <div className="rounded-2xl bg-bg p-5">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center flex-shrink-0">
-                  <BookOpen size={20} className="text-success" />
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                  <BookOpen size={20} className="text-[#10B981]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2.5">
-                    <h3 className="text-[15px] font-bold text-text-primary">Beasiswa Fullbright</h3>
-                    <Badge variant="success" className="text-[9px] px-2 py-0.5 leading-none">Baru</Badge>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-sm font-bold text-text-primary">Beasiswa Fullbright</h3>
+                    <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">Baru</span>
                   </div>
-                  <p className="text-sm text-text-secondary/60 mt-1">S1-S3 di universitas Amerika</p>
-                  <div className="flex items-center gap-2 mt-2 text-xs text-text-secondary/40">
-                    <span>📅 Deadline: 30 Sep</span>
-                  </div>
+                  <p className="text-sm text-text-secondary/50 mt-0.5">S1-S3 di universitas Amerika</p>
+                  <p className="text-xs text-text-secondary/30 mt-1.5">📅 Deadline: 30 Sep</p>
                 </div>
                 <ChevronRight size={18} className="text-text-secondary/20 flex-shrink-0" />
               </div>
             </div>
 
-            <div className="rounded-2xl bg-surface p-6 shadow-lg shadow-black/5 hover:shadow-xl transition-shadow">
+            <div className="rounded-2xl bg-bg p-5">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-amber-50 flex items-center justify-center flex-shrink-0">
-                  <TrendingUp size={20} className="text-warning" />
+                <div className="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center flex-shrink-0">
+                  <TrendingUp size={20} className="text-[#F59E0B]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-[15px] font-bold text-text-primary">Magang Digital Marketing</h3>
-                  <p className="text-sm text-text-secondary/60 mt-1">Startup unicorn, hybrid Jakarta</p>
-                  <div className="flex items-center gap-2 mt-2 text-xs text-text-secondary/40">
-                    <span>📅 Deadline: 15 Okt</span>
-                  </div>
+                  <h3 className="text-sm font-bold text-text-primary">Magang Digital Marketing</h3>
+                  <p className="text-sm text-text-secondary/50 mt-0.5">Startup unicorn, hybrid Jakarta</p>
+                  <p className="text-xs text-text-secondary/30 mt-1.5">📅 Deadline: 15 Okt</p>
                 </div>
                 <ChevronRight size={18} className="text-text-secondary/20 flex-shrink-0" />
               </div>
@@ -235,7 +189,7 @@ export default function HomePage() {
       <BottomNavigation
         items={navItems}
         activeTab={activeTab}
-        onTabChange={setActiveTab}
+        onTabChange={() => {}}
       />
     </div>
   );
