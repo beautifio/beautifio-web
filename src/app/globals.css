@@ -3,6 +3,7 @@
 @theme inline {
   --font-sans: "Poppins", "Inter", sans-serif;
   --font-body: "Inter", sans-serif;
+  --font-heading: var(--font-poppins);
 
   --color-primary: #084463;
   --color-primary-foreground: #ffffff;
