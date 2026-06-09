@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Mail, Lock, User, Eye, EyeOff, ArrowRight, Sparkles } from "lucide-react";
 import { getSupabaseClient } from "@/lib/supabase/client";
-import { createProfile } from "@/lib/supabase/profile";
+import { createProfile, updateProfile } from "@/lib/supabase/profile";
+import { getDiscoverData, clearDiscoverData, type DiscoverData } from "@/lib/discover-store";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -16,6 +17,11 @@ export default function RegisterPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [discover, setDiscover] = useState<DiscoverData | null>(null);
+
+  useEffect(() => {
+    setDiscover(getDiscoverData());
+  }, []);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,10 +37,24 @@ export default function RegisterPage() {
       });
       if (authError) throw authError;
       if (!authData.user) throw new Error("Gagal membuat akun");
-      const { error: profileError } = await createProfile({ id: authData.user.id, email, full_name: fullName });
+
+      const profileData: Record<string, unknown> = {
+        id: authData.user.id,
+        email,
+        full_name: fullName,
+        onboarding_completed: true,
+      };
+
+      if (discover?.goal) profileData.goals = [discover.goal];
+      if (discover?.status) profileData.status = discover.status.toLowerCase().replace(/\s+/g, "_") as string;
+      if (discover?.city) profileData.city = discover.city;
+
+      const { error: profileError } = await createProfile(profileData as Parameters<typeof createProfile>[0]);
       if (profileError) throw profileError;
+
+      clearDiscoverData();
       setSuccess(true);
-      setTimeout(() => router.push("/onboarding"), 800);
+      setTimeout(() => router.push("/beranda"), 800);
     } catch (err) {
       const message = err instanceof Error
         ? err.message.includes("already registered") ? "Email sudah terdaftar" : err.message
@@ -58,7 +78,7 @@ export default function RegisterPage() {
               </svg>
             </div>
             <h2 className="text-lg font-bold text-text-primary mb-1">Akun berhasil dibuat!</h2>
-            <p className="text-sm text-text-secondary/60">Mengarahkan ke onboarding...</p>
+            <p className="text-sm text-text-secondary/60">Mengarahkan ke dashboard...</p>
           </div>
         ) : (
           <>
@@ -67,7 +87,13 @@ export default function RegisterPage() {
             </div>
 
             <h1 className="text-[22px] font-bold text-text-primary font-heading mb-1">Mulai Perjalananmu</h1>
-            <p className="text-sm text-text-secondary/50 mb-6">Buat akun dan temukan arah masa depanmu.</p>
+            <p className="text-sm text-text-secondary/50 mb-6">Buat akun dan simpan roadmap personalisasimu.</p>
+
+            {discover && (
+              <div className="p-3 rounded-lg bg-primary/5 border border-primary/10 mb-4 text-xs text-text-secondary/60">
+                Roadmap untuk <span className="font-semibold text-text-primary">{discover.goal}</span> akan tersimpan
+              </div>
+            )}
 
             {error && (
               <div className="p-3 rounded-lg bg-destructive/5 border border-destructive/10 text-xs text-destructive mb-4">{error}</div>

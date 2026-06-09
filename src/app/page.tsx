@@ -22,7 +22,7 @@ export default function SplashPage() {
 
         <div className="space-y-3">
           <Link
-            href="/register"
+            href="/discover/goal"
             className="block w-full h-13 rounded-xl bg-primary text-primary-foreground text-sm font-bold text-center leading-[52px] cursor-pointer hover:opacity-90 transition-all shadow-lg shadow-primary/20"
           >
             Mulai Perjalananmu
