@@ -23,34 +23,36 @@ export function BottomNavigation({
 }: BottomNavigationProps) {
   return (
     <nav
-      className={`fixed bottom-0 left-0 right-0 h-16 bg-surface border-t border-border flex items-center justify-around px-2 z-50 ${className}`}
+      className={`fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] h-16 bg-surface border-t border-border z-50 ${className}`}
     >
-      {items.map((item) => {
-        const isActive = activeTab === item.id;
-        const Icon = item.icon;
+      <div className="h-full flex items-center justify-around px-2">
+        {items.map((item) => {
+          const isActive = activeTab === item.id;
+          const Icon = item.icon;
 
-        return (
-          <button
-            key={item.id}
-            onClick={() => onTabChange(item.id)}
-            className={`flex flex-col items-center justify-center gap-0.5 flex-1 h-full cursor-pointer transition-all ${
-              isActive ? "text-primary" : "text-text-secondary"
-            }`}
-          >
-            <Icon
-              size={20}
-              className={isActive ? "text-primary" : "text-text-secondary"}
-            />
-            <span
-              className={`text-[10px] font-medium ${
-                isActive ? "text-primary font-semibold" : "text-text-secondary"
+          return (
+            <button
+              key={item.id}
+              onClick={() => onTabChange(item.id)}
+              className={`flex flex-col items-center justify-center gap-0.5 flex-1 h-full cursor-pointer transition-all ${
+                isActive ? "text-primary" : "text-text-secondary"
               }`}
             >
-              {item.label}
-            </span>
-          </button>
-        );
-      })}
+              <Icon
+                size={20}
+                className={isActive ? "text-primary" : "text-text-secondary"}
+              />
+              <span
+                className={`text-[10px] font-medium ${
+                  isActive ? "text-primary font-semibold" : "text-text-secondary"
+                }`}
+              >
+                {item.label}
+              </span>
+            </button>
+          );
+        })}
+      </div>
     </nav>
   );
 }

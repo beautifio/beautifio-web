@@ -69,7 +69,7 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-bg flex items-center justify-center p-4">
-      <div className="w-full max-w-[430px] min-h-[640px] bg-surface rounded-[32px] shadow-card flex flex-col relative overflow-hidden">
+      <div className="w-full max-w-[430px] bg-surface rounded-[32px] shadow-card flex flex-col relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent" />
 
         <div className="absolute -top-24 -right-24 w-48 h-48 bg-secondary/10 rounded-full blur-3xl pointer-events-none" />

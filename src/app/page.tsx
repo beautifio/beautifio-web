@@ -28,7 +28,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-bg">
-      <div className="max-w-[430px] mx-auto bg-surface min-h-screen relative shadow-2xl">
+      <div className="max-w-[430px] mx-auto bg-surface min-h-screen relative shadow-2xl pb-24">
 
         {/* ─── Header ─────────────────────── */}
         <header className="flex items-center justify-between px-6 pt-8 pb-2">
