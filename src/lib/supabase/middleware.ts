@@ -2,32 +2,39 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function updateSession(request: NextRequest) {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!url || !key) {
+    return { supabaseResponse: NextResponse.next({ request }), user: null };
+  }
+
   let supabaseResponse = NextResponse.next({ request });
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          for (const cookie of cookiesToSet) {
-            request.cookies.set(cookie);
-          }
-          supabaseResponse = NextResponse.next({ request });
-          for (const cookie of cookiesToSet) {
-            supabaseResponse.cookies.set(cookie);
-          }
-        },
+  const supabase = createServerClient(url, key, {
+    cookies: {
+      getAll() {
+        return request.cookies.getAll();
+      },
+      setAll(cookiesToSet) {
+        for (const cookie of cookiesToSet) {
+          request.cookies.set(cookie);
+        }
+        supabaseResponse = NextResponse.next({ request });
+        for (const cookie of cookiesToSet) {
+          supabaseResponse.cookies.set(cookie);
+        }
       },
     },
-  );
+  });
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let user = null;
+  try {
+    const result = await supabase.auth.getUser();
+    user = result.data.user;
+  } catch {
+    // Auth check failed — treat as unauthenticated
+  }
 
-  return { supabaseResponse, user, supabase };
+  return { supabaseResponse, user };
 }
