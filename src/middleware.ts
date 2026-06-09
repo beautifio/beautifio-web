@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 
-const publicPaths = ["/login", "/register", "/forgot-password", "/auth/callback"];
+const publicPaths = ["/", "/login", "/register", "/forgot-password", "/auth/callback"];
 
 export async function middleware(request: NextRequest) {
   const { supabaseResponse, user } = await updateSession(request);
@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
 
   if (user && isPublic) {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
+    url.pathname = "/beranda";
     return NextResponse.redirect(url);
   }
 
