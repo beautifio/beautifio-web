@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: "Poppins", "Inter", sans-serif;
+
+  --color-primary: #084463;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #6BB9D4;
+  --color-secondary-foreground: #084463;
+  --color-accent: #FFC64F;
+  --color-accent-foreground: #084463;
+
+  --color-bg: #F8FAFC;
+  --color-surface: #ffffff;
+  --color-muted: #F1F5F9;
+  --color-muted-foreground: #64748B;
+
+  --color-text-primary: #1E293B;
+  --color-text-secondary: #64748B;
+
+  --color-border: #E2E8F0;
+  --color-ring: #084463;
+
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-destructive: #EF4444;
+  --color-info: #3B82F6;
+
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-dropdown: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-button: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-hero: 0 8px 32px rgba(0, 0, 0, 0.16);
+
+  --animate-fade-in: fade-in 0.7s ease-out;
+  --animate-scale-in: scale-in 0.2s ease-out;
+  --animate-slide-up: slide-up 0.3s ease-out;
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

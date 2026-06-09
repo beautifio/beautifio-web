@@ -1,0 +1,9 @@
+$ next dev
+▲ Next.js 16.2.7 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.255.255.254:3000
+✓ Ready in 426ms
+
+ GET / 200 in 418ms (next.js: 176ms, application-code: 242ms)
+[ELIFECYCLE] Command failed.
+[?25h
