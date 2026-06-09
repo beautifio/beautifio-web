@@ -29,7 +29,9 @@ export type CreateProfileInput = {
   goals?: string[];
 };
 
-export type UpdateProfileInput = Partial<Omit<CreateProfileInput, "id" | "email">>;
+export type UpdateProfileInput = Partial<Omit<CreateProfileInput, "id" | "email">> & {
+  onboarding_completed?: boolean;
+};
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -119,6 +121,8 @@ export async function updateProfile(
     if (input.status !== undefined) payload.status = input.status;
     if (input.interests !== undefined) payload.interests = input.interests;
     if (input.goals !== undefined) payload.goals = input.goals;
+    if (input.onboarding_completed !== undefined)
+      payload.onboarding_completed = input.onboarding_completed;
 
     const { data, error } = await client
       .from("user_profiles")
